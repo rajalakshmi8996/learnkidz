@@ -57,10 +57,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/parent/questions/create', [ParentQuestionController::class, 'create']);
 
-    Route::post('/parent/questions/store', [ParentQuestionController::class, 'store']);
-
-    Route::get('/parent/questions/{id}/edit', [ParentQuestionController::class, 'edit']);
-
+Route::post('/parent/questions/store', [ParentQuestionController::class, 'store'])
+    ->name('parent.questions.store');
     Route::put('/parent/questions/{id}', [ParentQuestionController::class, 'update']);
 
     Route::delete('/parent/questions/{id}', [ParentQuestionController::class, 'destroy']);

@@ -3,17 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Result;
 
 class PageController extends Controller
 {
-    public function home()
-    {
-        return view('home');
-    }
-
     public function parent()
     {
-        $results = collect();
+        $results = Result::latest()->get();
 
         return view('parent.dashboard', compact('results'));
     }

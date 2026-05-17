@@ -10,10 +10,8 @@ return new class extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
-
-            $table->integer('score');
-            $table->integer('total');
-
+            $table->integer('score')->default(0);
+            $table->integer('total')->default(0);
             $table->timestamps();
         });
     }

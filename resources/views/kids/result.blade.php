@@ -54,8 +54,7 @@
         {{ $score }} / {{ $total }}
     </div>
 
-    <a href="/kids-quiz">Try Again</a>
-    <div style="text-align:center; margin-top:30px;">
+    
 
     <!-- Try Again Button -->
     <a href="/kids-quiz" style="

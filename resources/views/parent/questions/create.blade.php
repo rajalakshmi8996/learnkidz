@@ -155,9 +155,8 @@
             Please fill all required fields correctly.
         </div>
     @endif
-
-    <form method="POST" action="/parent/questions" enctype="multipart/form-data">
-        @csrf
+<form method="POST" action="{{ route('parent.questions.store') }}" enctype="multipart/form-data">
+    @csrf
 
         <label>Question</label>
         <textarea name="question" placeholder="Example: How many apples are in the picture?" required>{{ old('question') }}</textarea>

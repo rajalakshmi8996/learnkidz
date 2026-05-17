@@ -40,10 +40,11 @@
 <h1>🧩 Kids Puzzle Section</h1>
 
 <div class="card">
-    <a href="/kids-puzzles/counting">🔢 Counting Puzzle</a>
-    <a href="/kids-puzzles/find-difference">🔍 Find Difference</a>
-    <a href="/kids-puzzles/shapes">⭐ Shape Puzzle</a>
+    <a href="/counting">🔢 Counting Puzzle</a>
 
+    <a href="/difference">🔍 Find Difference</a>
+
+    <a href="/shape-puzzle">⭐ Shape Puzzle</a>
 </div>
 
 </body>

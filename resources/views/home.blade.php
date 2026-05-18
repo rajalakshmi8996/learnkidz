@@ -271,8 +271,7 @@
             </p>
 
             <div class="buttons">
-                <a href="{{ url('/puzzle') }}" class="primary">Start Learning</a>
-            </div>
+<a href="{{ url('/kids/puzzles') }}" class="primary">Start Learning</a>            </div>
         </div>
 
         <div class="space-card">

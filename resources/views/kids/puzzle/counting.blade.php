@@ -54,8 +54,12 @@
 
 <h1>Counting Puzzle</h1>
 <p>Count the objects and type the correct number.</p>
-
-<form method="POST" action="#">
+@if(session('result'))
+    <h2 style="color: green; background: white; padding: 15px; border-radius: 12px;">
+        {{ session('result') }}
+    </h2>
+@endif
+<form method="POST" action="{{ url('/kids/counting/check') }}">
     @csrf
 
     @php
@@ -91,7 +95,7 @@
     <button type="submit">Submit Answers</button>
 </form>
 
-<a href="/kids-puzzles" class="back">Back to Puzzles</a>
+<a href="/kids/puzzles" class="back">Back to Puzzles</a>
 
 </body>
 </html>

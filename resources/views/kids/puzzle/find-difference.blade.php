@@ -11,18 +11,22 @@
             padding: 30px;
         }
 
+        h1 {
+            color: #333;
+        }
+
         .card {
             background: white;
             padding: 20px;
-            margin: 15px auto;
-            max-width: 500px;
-            border-radius: 15px;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            margin: 20px auto;
+            max-width: 550px;
+            border-radius: 18px;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.1);
         }
 
         .items {
-            font-size: 45px;
-            margin-bottom: 10px;
+            font-size: 50px;
+            margin: 20px 0;
         }
 
         .option {
@@ -51,82 +55,89 @@
             border-radius: 10px;
         }
 
-        button {
-            padding: 12px 25px;
-            background: #ff9800;
+        button, a {
+            display: inline-block;
+            margin: 20px 10px;
+            padding: 12px 22px;
+            background: #6a5cff;
             color: white;
-            border: none;
+            text-decoration: none;
             border-radius: 12px;
-            font-size: 16px;
+            border: none;
+            font-size: 18px;
             cursor: pointer;
         }
 
-        a {
-            display: inline-block;
-            margin-top: 20px;
+        .back-btn {
+            background: #607d8b;
         }
     </style>
 </head>
 
 <body>
 
-<h1>Find the Different One</h1>
+<h1>🔍 Find the Different One</h1>
 
-<form method="POST" action="/kids-puzzles/find-difference">
+<p>Select the different item in each question.</p>
+
+@if(session('result'))
+    <div style="
+        background: #d4edda;
+        color: #155724;
+        padding: 15px;
+        margin: 20px auto;
+        max-width: 400px;
+        border-radius: 12px;
+        font-size: 22px;
+        font-weight: bold;
+    ">
+        {{ session('result') }}
+    </div>
+@endif
+
+<form method="POST" action="{{ url('/kids/find-difference/check') }}">
     @csrf
 
     @php
         $questions = [
+
             [
                 'items' => ['🍎','🍎','🍎','🍌'],
-                'options' => [
-                    ['picture' => '🍎', 'value' => 'apple'],
-                    ['picture' => '🍌', 'value' => 'banana'],
-                    ['picture' => '🍊', 'value' => 'orange'],
-                ],
-                'answer' => 'banana'
+                'options' => ['🍎','🍌','🍊'],
+                'answer' => '🍌'
             ],
+
             [
                 'items' => ['🐶','🐶','🐱','🐶'],
-                'options' => [
-                    ['picture' => '🐶', 'value' => 'dog'],
-                    ['picture' => '🐱', 'value' => 'cat'],
-                    ['picture' => '🐰', 'value' => 'rabbit'],
-                ],
-                'answer' => 'cat'
+                'options' => ['🐶','🐱','🐰'],
+                'answer' => '🐱'
             ],
+
             [
                 'items' => ['🚗','🚗','🚌','🚗'],
-                'options' => [
-                    ['picture' => '🚗', 'value' => 'car'],
-                    ['picture' => '🚌', 'value' => 'bus'],
-                    ['picture' => '🚲', 'value' => 'bike'],
-                ],
-                'answer' => 'bus'
+                'options' => ['🚗','🚌','🚲'],
+                'answer' => '🚌'
             ],
+
             [
                 'items' => ['⭐','⭐','🌙','⭐'],
-                'options' => [
-                    ['picture' => '⭐', 'value' => 'star'],
-                    ['picture' => '🌙', 'value' => 'moon'],
-                    ['picture' => '☀️', 'value' => 'sun'],
-                ],
-                'answer' => 'moon'
+                'options' => ['⭐','🌙','☀️'],
+                'answer' => '🌙'
             ],
+
             [
                 'items' => ['⚽','⚽','🏀','⚽'],
-                'options' => [
-                    ['picture' => '⚽', 'value' => 'football'],
-                    ['picture' => '🏀', 'value' => 'basketball'],
-                    ['picture' => '🎾', 'value' => 'tennis'],
-                ],
-                'answer' => 'basketball'
+                'options' => ['⚽','🏀','🎾'],
+                'answer' => '🏀'
             ],
+
         ];
     @endphp
 
     @foreach($questions as $index => $q)
+
         <div class="card">
+
             <h2>Question {{ $index + 1 }}</h2>
 
             <div class="items">
@@ -138,19 +149,34 @@
             <p>Select the different one:</p>
 
             @foreach($q['options'] as $option)
+
                 <label class="option">
-<input type="radio" name="answers[{{ $index }}]" value="{{ $option['value'] }}">                    <span>{{ $option['picture'] }}</span>
+
+                    <input
+                        type="radio"
+                        name="answers[{{ $index }}]"
+                        value="{{ $option }}"
+                    >
+
+                    <span>{{ $option }}</span>
+
                 </label>
+
             @endforeach
 
-            <input type="hidden" name="correct[{{ $index }}]" value="{{ $q['answer'] }}">
         </div>
+
     @endforeach
 
-    <button type="submit">Submit</button>
+    <button type="submit">
+        Submit Answers
+    </button>
+
 </form>
 
-<a href="/kids-puzzles">Back to Puzzles</a>
+<a href="{{ url('/kids/puzzles') }}" class="back-btn">
+    ⬅ Back to Puzzles
+</a>
 
 </body>
 </html>
